@@ -53,7 +53,20 @@ def get_spoof_from_name(mds, sid, cluster_name):
 
     for x in range(show_simple_cluster_result['interfaces']['total']):
         print(show_simple_cluster_result['interfaces']['objects'][x])
+        
         print("\n")
+        print(show_simple_cluster_result['interfaces']['objects'][x]['name'])
+        print(show_simple_cluster_result['interfaces']['objects'][x]['interface-type'])
+
+        if(show_simple_cluster_result['interfaces']['objects'][x]['interface-type'] == "cluster" or show_simple_cluster_result['interfaces']['objects'][x]['interface-type'] == "cluster + sync"):
+            print("HIT")
+            print("\U0001F603")
+
+            try:
+                print(show_simple_cluster_result['interfaces']['objects'][x]['interface-type'])
+                print(show_simple_cluster_result['interfaces']['objects'][x]['topology-settings']['specific-network'])
+            except:
+                print("settings")
 
 def main():
     print("Start")
@@ -71,7 +84,7 @@ def main():
             print(key['api-key'])
     
     #sid = login_api(key['api-key'], mds, cma)
-    sid = apifunctions.login("a", "1", mds, cma)
+    sid = apifunctions.login("gdunlap", "1qazxsw2", mds, cma)
 
     if(debug == 1):
         print("login sid : " + sid)
